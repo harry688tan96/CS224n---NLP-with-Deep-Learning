@@ -36,11 +36,32 @@ def forward_backward_prop(data, labels, params, dimensions):
     b2 = np.reshape(params[ofs:ofs + Dy], (1, Dy))
 
     ### YOUR CODE HERE: forward propagation
-    raise NotImplementedError
+    z2 = np.dot(data, W1) + b1
+    a2 = sigmoid(z2)
+    z3 = np.dot(a2, W2) + b2
+    a3 = softmax(z3)
+    
+    index_of_one = np.argmax(labels, axis=1) #  Each row of the matrix 'labels' is the one-hot row vector. There is only one "1" in each row, the rest are all zeros.
+    dimension_of_labels = labels.shape[0]
+    cost = - np.sum(np.log(a3[np.arange(dimension_of_labels), index_of_one]))  # Cross-entropy cost
     ### END YOUR CODE
 
+    ### Debugging for foward propagation
+    '''
+    print "Index of '1' on each row in the matrix 'labels':\n", index_of_one
+    print "Probability matrix: \n", a3
+    print "Vector corresponding to the '1' in the matrix 'label': \n", a3[np.arange(dimension_of_labels), index_of_one]
+    '''
+    ### END DEBUG
+
     ### YOUR CODE HERE: backward propagation
-    raise NotImplementedError
+    d3 = a3 - labels  # d3 stands for delta_3 (the error at layer 3)
+    d2 = np.dot(d3, W2.T) * sigmoid_grad(a2)
+
+    gradW2 = np.dot(a2.T, d3)
+    gradb2 = np.sum(d3, axis=0)
+    gradW1 = np.dot(data.T, d2)
+    gradb1 = np.sum(d2, axis=0) 
     ### END YOUR CODE
 
     ### Stack gradients (do not modify)
@@ -80,7 +101,8 @@ def your_sanity_checks():
     """
     print "Running your sanity checks..."
     ### YOUR CODE HERE
-    raise NotImplementedError
+    print "You did not implement sanity checks!!"
+    # raise NotImplementedError
     ### END YOUR CODE
 
 
