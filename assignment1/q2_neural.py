@@ -55,7 +55,8 @@ def forward_backward_prop(data, labels, params, dimensions):
     ### END DEBUG
 
     ### YOUR CODE HERE: backward propagation
-    d3 = a3 - labels  # d3 stands for delta_3 (the error at layer 3)
+    d3 = a3  # d3 stands for delta_3 (the error at layer 3)
+    d3[np.arange(dimension_of_labels), index_of_one] -= 1
     d2 = np.dot(d3, W2.T) * sigmoid_grad(a2)
 
     gradW2 = np.dot(a2.T, d3)
