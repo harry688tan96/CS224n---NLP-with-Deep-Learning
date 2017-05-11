@@ -60,7 +60,7 @@ def forward_backward_prop(data, labels, params, dimensions):
     d2 = np.dot(d3, W2.T) * sigmoid_grad(a2)
 
     gradW2 = np.dot(a2.T, d3)
-    gradb2 = np.sum(d3, axis=0)
+    gradb2 = np.sum(d3, axis=0)  # How to get the gradient of bias units: http://ufldl.stanford.edu/tutorial/supervised/MultiLayerNeuralNetworks/
     gradW1 = np.dot(data.T, d2)
     gradb1 = np.sum(d2, axis=0) 
     ### END YOUR CODE
