@@ -31,15 +31,15 @@ def softmax(x):
     if len(x.shape) > 1:
         # Matrix
         x_max = np.max(x, axis=1) 
-        x = x - x_max.reshape((x.shape[0],1)) #  Normalize the array if it contains elements with huge value
+        x = x - x_max.reshape((x.shape[0],1)) # Normalizing the array's elements: http://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/
         x = np.exp(x)
         summation = np.sum(x, axis=1)
-        x =  x / summation
+        x =  x / summation.reshape((x.shape[0], 1))
         ### END YOUR CODE
     else:
         # Vector
         x_max = np.max(x)
-        x = x - x_max #  Normalize the array if it contains elements with huge value
+        x = x - x_max # Normalizing the array's elements: http://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/
         x = np.exp(x)
         summation = np.sum(x)
         x = x / summation
@@ -84,7 +84,8 @@ def test_softmax():
     """
     print "Running your tests..."
     ### YOUR CODE HERE
-    raise NotImplementedError
+    print "You did not implement sanity checks!!"
+    # raise NotImplementedError
     ### END YOUR CODE
 
 
