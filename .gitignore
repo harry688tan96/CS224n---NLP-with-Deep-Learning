@@ -1,2 +1,6 @@
 .env
 *.pyc
+saved_params_*.npy
+
+# Ignoring datasets folder as its size is too large
+/assignment1/utils/datasets/*
