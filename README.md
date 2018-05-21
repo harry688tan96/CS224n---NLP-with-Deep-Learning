@@ -1,1 +1,1 @@
-# CS224n---NLP-with-Deep-Learning
+Natural Language Processing (NLP) with Deep Learning
